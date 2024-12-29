@@ -6,7 +6,8 @@ Projekt polega na opracowaniu teoretycznym i implementacji wybranych metod wykry
 ## Członowie zespołu i podział pracy:
 
 - Safiya Aliaksandrava - ?
-- Wiktor Ciołek - ?
+- Wiktor Ciołek - Wykrywanie LSB Matching w obrazach za pomocą
+uczenia maszynowego
 - Ignacy Czajkowski - ?
 - Urszula Kamińska - ?
 - Dawid Karpiński - ?
