@@ -1,83 +1,218 @@
 @online{daniel,
     author = "Daniel Lerch",
     title = "LSB Matching and Matrix Embedding",
-    url  = "https://daniellerch.me/image-stego-lsbm/",
-    addendum = "(dostęp: \today)"
+    url = "https://daniellerch.me/image-stego-lsbm/",
+    addendum = "(dostęp: \today)",
 }
 
 @article{kombrink,
-author = {Kombrink, Meike Helena and Geradts, Zeno Jean Marius Hubert and Worring, Marcel},
-title = {Image Steganography Approaches and Their Detection Strategies: A Survey},
-year = {2024},
-issue_date = {February 2025},
-publisher = {Association for Computing Machinery},
-address = {New York, NY, USA},
-volume = {57},
-number = {2},
-issn = {0360-0300},
-url = {https://doi.org/10.1145/3694965},
-doi = {10.1145/3694965},
-abstract = {Steganography is the art and science of hidden (or covered) communication. In digital steganography, the bits of image, video, audio and text files are tweaked to represent the information to hide. This article covers the current methods for hiding information in images, alongside steganalysis methods that aim to detect the presence of steganography. By reviewing 456 references, this article discusses the different approaches that can be taken toward steganography and its much less widely studied counterpart. Currently in research older steganography approaches are more widely used than newer methods even though these show greater potential. New methods do have flaws; therefore, more research is needed to make these practically applicable. For steganalysis one of the greatest challenges is the generalisability. Often one scheme can detect the presence of one specific hiding method. More research is needed to combine current schemes and/or create new generalisable schemes. To allow readers to compare results between different papers in our work, performance indications of all steganalysis methods are outlined and a comparison of performance is included. This comparison is given using ‘topological sorting’ graphs, which compares detection results from all papers (as stated in the papers themselves) on different steganographic schemes.},
-journal = {ACM Comput. Surv.},
-month = oct,
-articleno = {33},
-numpages = {40},
-keywords = {Steganography, steganalysis, forensic image analysis}
+    author = {Kombrink, Meike Helena and Geradts, Zeno Jean Marius Hubert and
+              Worring, Marcel},
+    title = {Image Steganography Approaches and Their Detection Strategies: A
+             Survey},
+    year = {2024},
+    issue_date = {February 2025},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    volume = {57},
+    number = {2},
+    issn = {0360-0300},
+    url = {https://doi.org/10.1145/3694965},
+    doi = {10.1145/3694965},
+    abstract = {Steganography is the art and science of hidden (or covered)
+                communication. In digital steganography, the bits of image, video
+                , audio and text files are tweaked to represent the information
+                to hide. This article covers the current methods for hiding
+                information in images, alongside steganalysis methods that aim to
+                detect the presence of steganography. By reviewing 456 references
+                , this article discusses the different approaches that can be
+                taken toward steganography and its much less widely studied
+                counterpart. Currently in research older steganography approaches
+                are more widely used than newer methods even though these show
+                greater potential. New methods do have flaws; therefore, more
+                research is needed to make these practically applicable. For
+                steganalysis one of the greatest challenges is the
+                generalisability. Often one scheme can detect the presence of one
+                specific hiding method. More research is needed to combine
+                current schemes and/or create new generalisable schemes. To allow
+                readers to compare results between different papers in our work,
+                performance indications of all steganalysis methods are outlined
+                and a comparison of performance is included. This comparison is
+                given using ‘topological sorting’ graphs, which compares
+                detection results from all papers (as stated in the papers
+                themselves) on different steganographic schemes.},
+    journal = {ACM Comput. Surv.},
+    month = oct,
+    articleno = {33},
+    numpages = {40},
+    keywords = {Steganography, steganalysis, forensic image analysis},
 }
 
 @misc{sarkar,
-      title={Steganalysis: Detecting LSB Steganographic Techniques}, 
-      author={Tanmoy Sarkar and Sugata Sanyal},
-      year={2014},
-      eprint={1405.5119},
-      archivePrefix={arXiv},
-      primaryClass={cs.MM},
-      url={https://arxiv.org/abs/1405.5119}, 
+    title = {Steganalysis: Detecting LSB Steganographic Techniques},
+    author = {Tanmoy Sarkar and Sugata Sanyal},
+    year = {2014},
+    eprint = {1405.5119},
+    archivePrefix = {arXiv},
+    primaryClass = {cs.MM},
+    url = {https://arxiv.org/abs/1405.5119},
 }
 
 @article{LSBRR,
-author = {Fateh, Mansoor and Rezvani, Mohsen and Irani, Yasser},
-title = {A New Method of Coding for Steganography Based on LSB Matching Revisited},
-journal = {Security and Communication Networks},
-volume = {2021},
-number = {1},
-pages = {6610678},
-doi = {https://doi.org/10.1155/2021/6610678},
-url = {https://onlinelibrary.wiley.com/doi/abs/10.1155/2021/6610678},
-eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1155/2021/6610678},
-abstract = {LSB matching revisited is an LSB-based approach for image steganography. This method is a type of coding to increase the capacity of steganography. In this method, two bits of the secret message are hidden in two pixels with only one change. But this method provides no idea for hiding a message with a large number of bits. In other words, this method works only for n = 2, where n is the number of bits in a block of the secret message. In this paper, we propose an improved version of the LSB matching revisited approach, which works for n > 2. The proposed scheme contains two phases including embedding and extracting the message. In the embedding phase, we first convert the secret message into a bit-stream, and then the bit-stream is divided into a set of blocks including n bits in each block. Then we choose 2n−1 pixels for hiding such n bits of the secret message. In the next step, we choose the operations needed to generate such a message. Finally, we perform the obtained operations over the coefficients to hide the secret message. The proposed approach needs fewer changes than LSB MR when n > 2. The capacity of the proposed approach is (((2n − 1)/2n−1) − 1) × 100\% higher than the F5 method where this value for n > 2 is bigger than 75\%. For example, the capacity of our scheme is 75\% higher than the capacity of F5 for n = 3. The proposed method can be used in the first step of every steganography method to reduce the change in the stego image. Therefore, this method is a new coding method for steganography. Our experimental results using steganalysis show that using our method provides around 10\% higher detection error for SRNet over two steganography schemes.},
-year = {2021}
+    author = {Fateh, Mansoor and Rezvani, Mohsen and Irani, Yasser},
+    title = {A New Method of Coding for Steganography Based on LSB Matching
+             Revisited},
+    journal = {Security and Communication Networks},
+    volume = {2021},
+    number = {1},
+    pages = {6610678},
+    doi = {https://doi.org/10.1155/2021/6610678},
+    url = {https://onlinelibrary.wiley.com/doi/abs/10.1155/2021/6610678},
+    eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1155/2021/6610678},
+    abstract = {LSB matching revisited is an LSB-based approach for image
+                steganography. This method is a type of coding to increase the
+                capacity of steganography. In this method, two bits of the secret
+                message are hidden in two pixels with only one change. But this
+                method provides no idea for hiding a message with a large number
+                of bits. In other words, this method works only for n = 2, where
+                n is the number of bits in a block of the secret message. In this
+                paper, we propose an improved version of the LSB matching
+                revisited approach, which works for n > 2. The proposed scheme
+                contains two phases including embedding and extracting the
+                message. In the embedding phase, we first convert the secret
+                message into a bit-stream, and then the bit-stream is divided
+                into a set of blocks including n bits in each block. Then we
+                choose 2n−1 pixels for hiding such n bits of the secret message.
+                In the next step, we choose the operations needed to generate
+                such a message. Finally, we perform the obtained operations over
+                the coefficients to hide the secret message. The proposed
+                approach needs fewer changes than LSB MR when n > 2. The capacity
+                of the proposed approach is (((2n − 1)/2n−1) − 1) × 100\% higher
+                than the F5 method where this value for n > 2 is bigger than 75\%
+                . For example, the capacity of our scheme is 75\% higher than the
+                capacity of F5 for n = 3. The proposed method can be used in the
+                first step of every steganography method to reduce the change in
+                the stego image. Therefore, this method is a new coding method
+                for steganography. Our experimental results using steganalysis
+                show that using our method provides around 10\% higher detection
+                error for SRNet over two steganography schemes.},
+    year = {2021},
 }
 
-@ARTICLE{LSBR,
-  author={Mielikainen, J.},
-  journal={IEEE Signal Processing Letters}, 
-  title={LSB matching revisited}, 
-  year={2006},
-  volume={13},
-  number={5},
-  pages={285-287},
-  keywords={Pixel;Steganography;Histograms;Payloads;Gray-scale;Terminology;Detectors;Information technology;Calibration;Signal processing algorithms;Information hiding;steganography},
-  doi={10.1109/LSP.2006.870357}}
+@article{LSBR,
+    author = {Mielikainen, J.},
+    journal = {IEEE Signal Processing Letters},
+    title = {LSB matching revisited},
+    year = {2006},
+    volume = {13},
+    number = {5},
+    pages = {285-287},
+    keywords = {
+                Pixel;Steganography;Histograms;Payloads;Gray-scale;Terminology;Detectors;Information
+                technology;Calibration;Signal processing algorithms;Information
+                hiding;steganography},
+    doi = {10.1109/LSP.2006.870357},
+}
 
 
 @online{bossbase,
     title = "BOSSbase",
-    url  = "https://www.kaggle.com/datasets/lijiyu/bossbase",
-    addendum = "(dostęp: \today)"
+    url = "https://www.kaggle.com/datasets/lijiyu/bossbase",
+    addendum = "(dostęp: \today)",
 }
 
 @article{random_forest,
-	title = {Random {Forests}},
-	volume = {45},
-	issn = {1573-0565},
-	url = {https://doi.org/10.1023/A:1010933404324},
-	doi = {10.1023/A:1010933404324},
-	abstract = {Random forests are a combination of tree predictors such that each tree depends on the values of a random vector sampled independently and with the same distribution for all trees in the forest. The generalization error for forests converges a.s. to a limit as the number of trees in the forest becomes large. The generalization error of a forest of tree classifiers depends on the strength of the individual trees in the forest and the correlation between them. Using a random selection of features to split each node yields error rates that compare favorably to Adaboost (Y. Freund \& R. Schapire, Machine Learning: Proceedings of the Thirteenth International conference, ***, 148–156), but are more robust with respect to noise. Internal estimates monitor error, strength, and correlation and these are used to show the response to increasing the number of features used in the splitting. Internal estimates are also used to measure variable importance. These ideas are also applicable to regression.},
-	number = {1},
-	journal = {Machine Learning},
-	author = {Breiman, Leo},
-	month = oct,
-	year = {2001},
-	pages = {5--32},
+    title = {Random {Forests}},
+    volume = {45},
+    issn = {1573-0565},
+    url = {https://doi.org/10.1023/A:1010933404324},
+    doi = {10.1023/A:1010933404324},
+    abstract = {Random forests are a combination of tree predictors such that
+                each tree depends on the values of a random vector sampled
+                independently and with the same distribution for all trees in the
+                forest. The generalization error for forests converges a.s. to a
+                limit as the number of trees in the forest becomes large. The
+                generalization error of a forest of tree classifiers depends on
+                the strength of the individual trees in the forest and the
+                correlation between them. Using a random selection of features to
+                split each node yields error rates that compare favorably to
+                Adaboost (Y. Freund \& R. Schapire, Machine Learning: Proceedings
+                of the Thirteenth International conference, ***, 148–156), but
+                are more robust with respect to noise. Internal estimates monitor
+                error, strength, and correlation and these are used to show the
+                response to increasing the number of features used in the
+                splitting. Internal estimates are also used to measure variable
+                importance. These ideas are also applicable to regression.},
+    number = {1},
+    journal = {Machine Learning},
+    author = {Breiman, Leo},
+    month = oct,
+    year = {2001},
+    pages = {5--32},
+}
+
+@inproceedings{auto_power_cepstrum,
+    author = {Ning, Chen and Jie, Zhu},
+    booktitle = {2007 Second International Conference on Communications and
+                 Networking in China},
+    title = {A Novel Echo Detection Scheme based on Autocorrelation of Power
+             Cepstrum},
+    year = {2007},
+    volume = {},
+    number = {},
+    pages = {554-558},
+    keywords = {Autocorrelation;Cepstrum;Watermarking;Noise robustness;Signal
+                processing;Filtering;Noise level;Signal to noise
+                ratio;Performance evaluation;Testing;Echo hiding;audio
+                watermarking;echo detection;autocorrelation of power cepstrum},
+    doi = {10.1109/CHINACOM.2007.4469451},
+}
+
+@inproceedings{Gruhl1996EchoH,
+    title = {Echo Hiding},
+    author = {Daniel F. Gruhl and Anthony Lu and Walter Bender},
+    booktitle = {Information Hiding},
+    year = {1996},
+    url = {https://api.semanticscholar.org/CorpusID:14156378},
+}
+
+@article{echo_swc,
+    author = {Xie, Chunhui and Cheng, Yimin and Chen, Yangkun},
+    title = {An active steganalysis approach for echo hiding based on Sliding
+             Windowed Cepstrum},
+    year = {2011},
+    issue_date = {April, 2011},
+    publisher = {Elsevier North-Holland, Inc.},
+    address = {USA},
+    volume = {91},
+    number = {4},
+    issn = {0165-1684},
+    url = {https://doi.org/10.1016/j.sigpro.2010.09.006},
+    doi = {10.1016/j.sigpro.2010.09.006},
+    abstract = {This paper presents an active steganalysis technique for echo
+                hiding (EH). This approach can differentiate stego audios (with
+                hidden message) from nature ones (without hidden message), and
+                then extract sequential EH messages in stego audios without prior
+                knowledge about the EH technique. The procedure of this algorithm
+                can be simplified as follows: (i) Sliding Windowed Cepstrum (SWC)
+                is obtained by employing a Sliding Window (SW) to move over the
+                audio signal sample by sample. (ii) The echo detector is designed
+                based on statistical analysis of the Cepstrum Peak Location
+                Aggregation Degree (CPLAD). (iii) For stego signals, both echo
+                delay and the range of segment length are estimated by exploring
+                the changing rule of the SWC. (iv) The accurate estimation of
+                segment length and synchronism position is acquired by the grid
+                search algorithm. (v) Finally, the binary secret message can be
+                extracted using the estimated parameters in the previous steps.
+                The proposed method has been implemented and tested to extract
+                the message which is embedded into audio clips by using EH
+                techniques with different kernels. The experimental results show
+                that the accuracy of extraction is no less than 90\% when
+                attenuation is greater than 0.45.},
+    journal = {Signal Process.},
+    month = apr,
+    pages = {877–889},
+    numpages = {13},
+    keywords = {Active steganalysis, Echo hiding, Extract secret messages,
+                Sliding Windowed Cepstrum, Steganography},
 }

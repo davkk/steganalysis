@@ -6,7 +6,7 @@
 \usepackage[MeX]{polski}
 \usepackage{graphicx}   %do rysunków
 \usepackage{wrapfig}    %do rysunków otoczonych tekstem
-\usepackage{color}      %do użycia podst. kolorów oraz zdefiniowanych kolorów 
+\usepackage{color}      %do użycia podst. kolorów oraz zdefiniowanych kolorów
 %do kolorowych referencji do rysunków, cytowań:
 \usepackage{multirow}
 \usepackage{longtable}
@@ -21,6 +21,7 @@
 \usepackage{subcaption}
 \usepackage{csquotes}
 \usepackage{listings}
+\usepackage{svg}
 
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 
@@ -28,6 +29,16 @@
 \usepackage{multicol}
 \usepackage{colortbl}
 
+\textwidth=16cm
+\textheight=23cm
+\topmargin=-2cm
+\oddsidemargin=0cm
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.6em}
+\setlength{\jot}{12pt}
+
+\renewcommand{\arraystretch}{1.4}
 
 %do pdfow
 \usepackage{pdfpages}
@@ -66,39 +77,39 @@
 \begin{document}
 
 \begin{titlepage}
-    \begin{center}
-        \vspace*{1cm}
-        
-        \textbf{\Huge Politechnika Warszawska}\\
-        \vspace{2cm}
-        
-        \textbf{\LARGE Raport Projektu}\\
-        \vspace{0.5cm}
-        \textbf{\Large Metody wykrywania steganografii}\\
-        
-        \vspace{2cm}
-        
-        \textbf{Przedmiot:} Kryptografia Stosowana \\
-        \textbf{Kod przedmiotu:} 103A-TLTIC-MSP-KRYS \\
-        \textbf{Prowadzący:} dr Adam Komorowski \\
-        
-        \vfill
-        
-        \textbf{Autorzy:}\\
-        \vspace{0.5cm}
-        Safiya Aliaksandrava\\
-        Wiktor Ciołek 311501\\
-        Ignacy Czajkowski\\
-        Urszula Kamińska\\
-        Dawid Karpiński\\
-        
-        \vspace{1cm}
-        
-        \textbf{Data:} \\
-        \today
-        
-        \vspace{2cm}
-    \end{center}
+	\begin{center}
+		\vspace*{1cm}
+
+		\textbf{\Huge Politechnika Warszawska}\\
+		\vspace{2cm}
+
+		\textbf{\LARGE Dokumentacja Projektu}\\
+		\vspace{0.5cm}
+		\textbf{\Large Metody wykrywania steganografii}\\
+
+		\vspace{2cm}
+
+		\textbf{Przedmiot:} Kryptografia Stosowana \\
+		\textbf{Kod przedmiotu:} 103A-TLTIC-MSP-KRYS \\
+		\textbf{Prowadzący:} dr Adam Komorowski \\
+
+		\vfill
+
+		\textbf{Autorzy:}\\
+		\vspace{0.5cm}
+		Safiya Aliaksandrava\\
+		Wiktor Ciołek 311501\\
+		Ignacy Czajkowski\\
+		Urszula Kamińska\\
+		Dawid Karpiński\\
+
+		\vspace{1cm}
+
+		\textbf{Data:} \\
+		\today
+
+		\vspace{2cm}
+	\end{center}
 \end{titlepage}
 
 \section{Wstęp}
@@ -106,9 +117,14 @@ Czym jest staganografia\\
 kto jest autorem czego\\
 Link do repozytorium z kodami
 
+\clearpage
 \section{Wykrywanie LSB Matching w obrazach za pomocą uczenia maszynowego}
-    \input{image-lsb-matching}
-        
+\input{image-lsb-matching}
+
+\clearpage
+\section{Wykrywanie Echo Hiding poprzez analizę cepstrum mocy sygnału}
+\input{echo-hiding-cepstral}
+
 \section{Podsumowanie}
 
 \printbibliography[title={Źródła}] %Prints bibliography
