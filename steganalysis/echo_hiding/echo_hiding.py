@@ -1,7 +1,5 @@
 import numpy as np
 import numpy.typing as npt
-import scipy.fftpack as fft
-from scipy.signal import fftconvolve
 
 
 def text_to_bits(text: str) -> str:
@@ -13,7 +11,7 @@ def bits_to_text(bits: str) -> str:
 
 
 class EchoHiding:
-    def __init__(self, *, amplitude: float, offset: float, delta: float, alpha: float):
+    def __init__(self, *, amplitude: float, offset: int, delta: int, alpha: float):
         self.amplitude = amplitude
         self.offset = offset
         self.delta = delta
@@ -22,12 +20,12 @@ class EchoHiding:
 
     def encode(
         self,
-        signal: npt.NDArray[np.int_],
-        *,
-        bits: npt.NDArray[np.int_],
+        signal: npt.NDArray[np.floating],
         sample_rate: int,
-    ) -> npt.NDArray[np.int_]:
-        segment_len = len(signal) // len(bits)
+        *,
+        bits: npt.NDArray[np.floating],
+    ) -> npt.NDArray[np.floating]:
+        segment_len = signal.size // bits.size
         print(f"{signal.size=}")
         print(f"{segment_len=}")
         result = np.zeros_like(signal)
@@ -35,7 +33,7 @@ class EchoHiding:
         for i, bit in enumerate(bits):
             delay = self.offset + (bit * self.delta)
 
-            kernel = np.zeros(delay + 1)
+            kernel = np.zeros(delay + 1).astype(np.floating)
             assert (
                 kernel.size < segment_len
             ), f"kernel should fit in segment ({kernel.size} >= {segment_len})"
@@ -45,13 +43,14 @@ class EchoHiding:
 
             start = i * segment_len
             end = start + segment_len
-            result[start:end] += fftconvolve(signal[start:end], kernel, mode="same")
+            window = signal[start:end] * np.hamming(segment_len)
+            result[start:end] += np.convolve(window, kernel, mode="same")
 
         return result
 
     def decode(
         self,
-        signal: npt.NDArray[np.int_],
+        signal: npt.NDArray[np.floating],
         *,
         num_bits: int,
     ) -> npt.NDArray[np.uint8]:
@@ -63,7 +62,9 @@ class EchoHiding:
             end = start + segment_len
 
             segment = signal[start:end]
-            cepstrum = np.abs(fft.ifft(np.log(np.abs(fft.fft(segment)) ** 2 + 1e-10)))
+            cepstrum = np.abs(
+                np.fft.ifft(np.log(np.abs(np.fft.fft(segment)) ** 2 + 1e-10))
+            )
             assert self.offset + self.delta < len(cepstrum)
 
             peak_zero = cepstrum[self.offset]
