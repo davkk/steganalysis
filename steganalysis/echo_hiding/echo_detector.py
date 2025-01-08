@@ -2,6 +2,7 @@ from typing import Any, Generator
 
 import numpy as np
 import numpy.typing as npt
+from matplotlib import pyplot as plt
 
 
 def power_cepstrum(audio: npt.NDArray[np.floating]):
@@ -41,6 +42,8 @@ class EchoDetector:
     def estimate_delays(
         self,
         audio: npt.NDArray[np.floating],
+        *,
+        save_plot: bool = False,
     ) -> tuple[float, int, int]:
         peak_locations = [
             self.min_delay + np.argmax(cepstrum[self.min_delay : self.max_delay])
@@ -55,6 +58,31 @@ class EchoDetector:
 
         top_2 = np.argsort(counts)[-2:]
         d0, d1 = bins[top_2]
+
+        if save_plot:
+            plt.figure(figsize=(9, 4))
+            plt.bar(bins[:-1], counts, width=(bins[1] - bins[0]))
+            plt.axvline(
+                x=d0,
+                linestyle="-.",
+                color="orange",
+                alpha=0.6,
+                label=f"$d_0 = {d0:.2f}$ [próbek]",
+            )
+            plt.axvline(
+                x=d1,
+                linestyle="--",
+                color="orange",
+                alpha=0.6,
+                label=f"$d_1 = {d1:.2f}$ [próbek]",
+            )
+            plt.title("Histogram lokalizacji maksymalnych wartości")
+            plt.xlabel("Opóźnienie echa [próbek]")
+            plt.yscale("log")
+            plt.legend()
+            plt.tight_layout()
+            plt.savefig("plot_echo_peak_location.pdf")
+
         cplar = sum(counts[top_2]) / len(peak_locations)
         return cplar, int(d0), int(d1)
 
@@ -65,6 +93,7 @@ class EchoDetector:
         *,
         d0: int,
         d1: int,
+        save_plot: bool = False,
     ):
         assert d0 > d1
 
@@ -86,5 +115,15 @@ class EchoDetector:
 
             lengths.append(est_length)
             avg_sums.append(avg_sum)
+
+        if save_plot:
+            plt.figure(figsize=(8, 4))
+            plt.plot(lengths, avg_sums, ".-")
+            plt.title("Estymacja długości segmentu")
+            plt.xlabel("Długość segmentu [próbek]")
+            plt.ylabel("Średnia suma wartości mocy cepstrum w $d_0$ i $d_1$")
+            plt.tight_layout()
+            plt.grid(True)
+            plt.savefig("plot_echo_segment_length.pdf")
 
         return lengths[np.argmax(avg_sums)]

@@ -16,6 +16,7 @@ parser.add_argument("--offset", type=int, required=True)
 parser.add_argument("--delta", type=int, required=True)
 parser.add_argument("--window-size", type=int, required=True)
 parser.add_argument("--step-size", type=int, required=True)
+parser.add_argument("--save-plot", action=argparse.BooleanOptionalAction)
 args = parser.parse_args()
 
 sample_rate, audio = wavfile.read(args.audio)
@@ -44,14 +45,23 @@ detector = EchoDetector(
     max_delay=int(3e-2 * sample_rate),
 )
 
-CPLAR, d0, d1 = detector.estimate_delays(result)
+CPLAR, d0, d1 = detector.estimate_delays(
+    result,
+    save_plot=args.save_plot,
+)
 print(f"{CPLAR=:.3f}")
 assert CPLAR > 0.5
 
 print(f"offset = {d1}")
 print(f"delta = {d0 - d1}")
 
-segment_len = detector.estimate_segment_length(result, sample_rate, d0=d0, d1=d1)
+segment_len = detector.estimate_segment_length(
+    result,
+    sample_rate,
+    d0=d0,
+    d1=d1,
+    save_plot=args.save_plot,
+)
 print(f"{segment_len=}")
 
 num_bits = result.size // segment_len

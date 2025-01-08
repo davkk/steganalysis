@@ -2,7 +2,6 @@
 \usepackage[margin=1in]{geometry} % Optional: adjust page margins
 
 \usepackage[utf8]{inputenc}
-\usepackage[utf8]{inputenc}
 \usepackage[MeX]{polski}
 \usepackage{graphicx}   %do rysunków
 \usepackage{wrapfig}    %do rysunków otoczonych tekstem
@@ -21,7 +20,36 @@
 \usepackage{subcaption}
 \usepackage{csquotes}
 \usepackage{listings}
-\usepackage{svg}
+\usepackage{xcolor}
+\usepackage[charter]{mathdesign}
+\usepackage{inconsolata}
+
+% Define Python style for listings
+\lstdefinestyle{python}{
+    language=Python,
+    basicstyle=\ttfamily\small, % Monospace font, smaller size
+    keywordstyle=\bfseries\color{blue}, % Keywords in bold blue
+    stringstyle=\color{green!60!black}, % Strings in green
+    commentstyle=\color{gray!80!black}\itshape, % Comments in italic gray
+    columns=fixed,
+    numbers=left, % Line numbers on the left
+    numberstyle=\tiny\color{gray}, % Small gray line numbers
+    stepnumber=1,
+    numbersep=10pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    frame=single, % Add frame around the listing
+    rulecolor=\color{gray!50}, % Frame color
+    tabsize=4,
+    captionpos=b, % Caption at the bottom
+    breaklines=true,
+    breakatwhitespace=true,
+    backgroundcolor=\color{gray!10}, % Light gray background
+    morekeywords={as, yield, Any, Generator, np}, % Additional keywords
+}
+
+\lstset{style=python}
 
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 
@@ -98,10 +126,10 @@
 		\textbf{Autorzy:}\\
 		\vspace{0.5cm}
 		Safiya Aliaksandrava\\
-		Wiktor Ciołek 311501\\
+		Wiktor Ciołek, 311501\\
 		Ignacy Czajkowski\\
 		Urszula Kamińska\\
-		Dawid Karpiński\\
+		Dawid Karpiński, 311383\\
 
 		\vspace{1cm}
 
