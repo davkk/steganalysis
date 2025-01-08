@@ -16,7 +16,6 @@ class EchoHiding:
         self.offset = offset
         self.delta = delta
         self.alpha = alpha
-        print(self.offset, self.offset + self.delta)
 
     def encode(
         self,
@@ -26,11 +25,10 @@ class EchoHiding:
         bits: npt.NDArray[np.floating],
     ) -> npt.NDArray[np.floating]:
         segment_len = signal.size // bits.size
-        print(f"{signal.size=}")
-        print(f"{segment_len=}")
+        print(f"real {segment_len=}")
         result = np.zeros_like(signal)
 
-        for i, bit in enumerate(bits):
+        for idx, bit in enumerate(bits):
             delay = self.offset + (bit * self.delta)
 
             kernel = np.zeros(delay + 1).astype(np.floating)
@@ -41,35 +39,9 @@ class EchoHiding:
             kernel[0] = 1.0
             kernel[delay] = self.amplitude * np.exp(-self.alpha * delay / sample_rate)
 
-            start = i * segment_len
+            start = idx * segment_len
             end = start + segment_len
             window = signal[start:end] * np.hamming(segment_len)
             result[start:end] += np.convolve(window, kernel, mode="same")
 
         return result
-
-    def decode(
-        self,
-        signal: npt.NDArray[np.floating],
-        *,
-        num_bits: int,
-    ) -> npt.NDArray[np.uint8]:
-        bits = np.zeros(num_bits).astype(np.uint8)
-        segment_len = len(signal) // num_bits
-
-        for i in range(num_bits):
-            start = i * segment_len
-            end = start + segment_len
-
-            segment = signal[start:end]
-            cepstrum = np.abs(
-                np.fft.ifft(np.log(np.abs(np.fft.fft(segment)) ** 2 + 1e-10))
-            )
-            assert self.offset + self.delta < len(cepstrum)
-
-            peak_zero = cepstrum[self.offset]
-            peak_one = cepstrum[self.offset + self.delta]
-
-            bits[i] = int(peak_one > peak_zero)
-
-        return bits
