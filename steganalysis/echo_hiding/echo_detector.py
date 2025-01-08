@@ -49,7 +49,7 @@ class EchoDetector:
 
         counts, bins = np.histogram(
             peak_locations,
-            bins=(self.max_delay - self.min_delay) // 2,
+            bins=(self.max_delay - self.min_delay),
             range=(self.min_delay, self.max_delay),
         )
 
