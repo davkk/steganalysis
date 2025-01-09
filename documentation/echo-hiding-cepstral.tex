@@ -11,7 +11,7 @@ gdzie operator $*$ oznacza splot, a $h(n)$ jest funkcją kernela zdefiniowaną j
 	h(n) = \delta(n) + a \delta(n-d).
 \end{equation}
 
-W powyższym równaniu $\delta(n)$ oznacza funkcję delta Diraca, $a$ jest współczynnikiem tłumienia echa ($0 < a < 1$), a $d$ to opóźnienie echa wyrażone w próbkach.
+W powyższym równaniu $\delta(n)$ oznacza deltę Diraca, $a$ jest współczynnikiem tłumienia echa ($0 < a < 1$), a $d$ to opóźnienie echa wyrażone w ilości próbek.
 
 Wartości $d$ oraz $a$ są zwykle dobierane w taki sposób, aby echo pozostało niesłyszalne, jednocześnie zapewniając wystarczające właściwości by umożliwić dekodowanie ukrytej wiadomości.
 
@@ -28,12 +28,14 @@ Zatem, osadzane dane są definiowane za pomocą czterech głównych parametrów 
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=0.6\textwidth]{img/echo-hiding.png}
-	\caption{\label{fig:echo-hiding} Parametry EH}
+	\caption{\label{fig:echo-hiding} Parametry EH.}
 \end{figure}
 \pagebreak
 
 
 \subsection{Dekodowanie}
+
+Opisany poniżej proces dekodowania został wykonany na przykładzie ukrytego echo o parametrach: $d_1=48$ próbek, $d_0=96$ próbek, i długości segmentu $N=1078$ próbek, w pliku audio z nagraną ludzką mową.
 
 \subsubsection{Analiza cepstralna i cepstrum mocy}
 
@@ -51,7 +53,7 @@ Można również zdefiniować tzw. cepstrum mocy (ang. \textit{power cepstrum}),
 	P_{\text{y}}(n) = \left| \mathcal{F}^{-1} \big( \ln |\mathcal{F}(y(n))|^2 \big) \right|^2,
 \end{equation}
 
-\begin{lstlisting}[language=Python,caption={Fragment kodu liczącego cepstrum mocy}]
+\begin{lstlisting}[language=Python, caption={Fragment kodu liczącego cepstrum mocy.}]
 def power_cepstrum(audio):
     spectrum = np.abs(np.fft.fft(audio)) ** 2
     log_spectrum = np.log(spectrum + np.finfo(float).eps)
@@ -62,18 +64,21 @@ def power_cepstrum(audio):
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{./img/plot_echo_signal_spectrum_cepstrum.pdf}
+	\caption{Porównanie reprezentacji sygnału z echem i bez echa.}
 \end{figure}
 
 \subsubsection{Estymacja opóźnień echa}
 
 Dokonując steganalizy jako potencjalny atakujący, nie mamy pojęcia o użytych parametrach do kodowania echem. Natomiast, możliwa jest ich estymacja poprzez wykorzystanie analizy cepstrum mocy z przesuwanym oknem (ang. \textit{sliding window}) \cite{echo_swc}.
 
-W tej metodzie sygnał analizowany jest sekcja po sekcji za pomocą okna o określonym rozmiarze $\tau$, które przesuwa się po sygnale z krokiem $k$. Dla każdej sekcji obliczane jest cepstrum mocy, a następnie lokalizowane są szczyty odpowiadające potencjalnym opóźnieniom $d_0$ i $d_1$. Po przesunięciu okna przez cały sygnał tworzy się histogram lokalizacji szczytów w celu identyfikacji najbardziej prawdopodobnych wartości opóźnień.
+W tej metodzie sygnał analizowany jest segment po segmencie za pomocą okna o określonym rozmiarze $\tau$, które przesuwa się po sygnale z krokiem $k$ (\ref{fig:sliding}). Dla każdego segmentu obliczane jest cepstrum mocy, a następnie lokalizowane są szczyty odpowiadające potencjalnym opóźnieniom $d_0$ i $d_1$. Po przesunięciu okna przez cały sygnał tworzy się histogram lokalizacji pików w celu identyfikacji najbardziej prawdopodobnych wartości opóźnień.
 
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=\textwidth]{./img/echo-sliding-window.png}
+	\caption{\label{fig:sliding} Wizualizacja algorytmu okna przesuwnego.}
 \end{figure}
+\pagebreak
 
 Algorytm został zaimplementowany w klasie \verb|EchoDetector|, której wejściowe parametry to:
 \begin{itemize}
@@ -85,7 +90,7 @@ Algorytm został zaimplementowany w klasie \verb|EchoDetector|, której wejścio
 
 Cepstrum mocy jest obliczane dla kolejnych segmentów sygnału, wyznaczanych za pomocą okna przesuwnego, z dodatkowo aplikowaną funkcją Hamminga. Metoda \verb|iter_cepstrums| generuje cepstrum dla kolejnych okien:
 
-\begin{lstlisting}[language=Python]
+\begin{lstlisting}[language=Python, caption={Generator liczący cepstrum mocy dla poszczególnych okien przesuwnych.}]
 def iter_cepstrums(self, audio, *, window_size=None, step_size=None):
     window_size = window_size or self.window_size
     step_size = step_size or self.step_size
@@ -97,7 +102,7 @@ def iter_cepstrums(self, audio, *, window_size=None, step_size=None):
 
 Na podstawie obliczonego cepstrum, metoda \verb|estimate_delays| wyznacza histogram lokalizacji maksimów w przedziale \verb|min_delay|--\verb|max_delay|. Dwa najczęściej występujące maksima (\verb|d0| i \verb|d1|) są uznawane za potencjalne opóźnienia echa:
 
-\begin{lstlisting}[language=Python]
+\begin{lstlisting}[language=Python, caption={Tworzenie histogramu z lokalizacji pików.}]
 counts, bins = np.histogram(
     peak_locations,
     bins=(self.max_delay - self.min_delay),
@@ -107,13 +112,19 @@ top_2 = np.argsort(counts)[-2:]
 d0, d1 = bins[top_2]
 \end{lstlisting}
 
+\subsubsection{Współczynnik CPLAR}
+
+Jedną z kluczowych wielkości oceniających jakość detekcji opóźnień jest współczynnik \textbf{CPLAR} (\textit{Cepstrum Peak Location Aggregation Rate}) \cite{echo_swc}. Jest definiowany jako stosunek liczby okien cepstrum, w których piki zostały poprawnie zlokalizowane w pozycjach $d_0$ lub $d_1$, do całkowitej liczby analizowanych okien.
+
+\begin{lstlisting}[language=Python, caption={Obliczanie współczynnika CPLAR.}]
+cplar = sum(counts[top_2]) / len(peak_locations)
+\end{lstlisting}
+
 \subsubsection{Estymacja długości segmentu}
 
-Metoda estymacji długości segmentu analizuje sumaryczną moc cepstrum w lokalizacjach odpowiadających opóźnieniom \verb|d0| i \verb|d1| dla różnych długości pojedynczego segmentu.
+Po otrzymaniu opóźnień echa można wyznaczyć długość segmentu w przybliżony sposób, poprzez iterowanie po potencjalnych długościach i wyznaczanie na podstawie każdego segmentu średnią sumę wartości cepstrum w lokalizacjach \verb|d0| i \verb|d1| \cite{echo_swc}:
 
-Cepstra dla poszczególnych długości okna są obliczane iteracyjnie, a następnie dla każdej długości wyznaczana jest średnia suma wartości w lokalizacjach \verb|d0| i \verb|d1|:
-
-\begin{lstlisting}[language=Python]
+\begin{lstlisting}[language=Python, caption={Średnia z sum wartości pików z każdego segmentu.}]
 avg_sum = np.mean(
     [
         cepstrum[d0] + cepstrum[d1]
@@ -126,20 +137,22 @@ avg_sum = np.mean(
 )
 \end{lstlisting}
 
-Ostateczna, estymowana długość segmentu to ta, dla której średnia suma wartości mocy w lokalizacjach \verb|d0| i \verb|d1| jest największa:
+Ostateczna, estymowana długość segmentu to ta, dla której średnia suma wartości mocy w lokalizacjach \verb|d0| i \verb|d1| jest największa (\ref{fig:segment-len}):
 
-\begin{lstlisting}[language=Python]
+\begin{lstlisting}[language=Python, caption={Branie długości, której odpowiada średnia suma o maksymalnej wartości}]
 return lengths[np.argmax(avg_sums)]
 \end{lstlisting}
 
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=\textwidth]{./img/plot_echo_segment_length.pdf}
+	\caption{\label{fig:segment-len} Wykres średniej sumy pików od badanej, potencjalnej długości segmentu.}
 \end{figure}
+\pagebreak
 
-Na koniec, po otrzymaniu opóźnień i długości segmentu można obliczyć długości segmentów $N$, z jakimi zakodowana jest wiadomość.
+Na koniec, znając już wszystkie potrzebne parametry można obliczyć długości segmentów $N$, z jakimi zakodowana jest wiadomość.
 
-\begin{lstlisting}[language=Python]
+\begin{lstlisting}[language=Python, caption={Ostateczna procedura dekodowania wiadomości.}]
 num_bits = result.size // segment_len
 bits = np.zeros(num_bits).astype(np.uint8)
 
@@ -158,4 +171,4 @@ for idx, cepstrum in zip(
 
 \subsection{Podsumowanie}
 
-W ramach projektu zaimplementowano algorytmy pozwalające na detekcję opóźnień $d_0$ i $d_1$, oraz oszacowanie długości segmentów $N$. Kluczowe równania, takie jak obliczanie cepstrum mocy oraz proces analizy z przesuwanym oknem, zostały zaimplementowane w środowisku Python. Metody te zostały następnie przetestowane na różnych sygnałach audio.
+W ramach projektu zaimplementowano algorytmy pozwalające na detekcję opóźnień $d_0$ i $d_1$, oraz oszacowanie długości segmentów $N$. Kluczowe równania, takie jak obliczanie cepstrum mocy oraz proces analizy z przesuwanym oknem, zostały zaimplementowane w środowisku Python.

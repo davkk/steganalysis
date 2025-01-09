@@ -67,17 +67,17 @@ class EchoDetector:
                 linestyle="-.",
                 color="orange",
                 alpha=0.6,
-                label=f"$d_0 = {d0:.2f}$ [próbek]",
+                label=f"$d_0 = {d0:.2f}$ [próbki]",
             )
             plt.axvline(
                 x=d1,
                 linestyle="--",
                 color="orange",
                 alpha=0.6,
-                label=f"$d_1 = {d1:.2f}$ [próbek]",
+                label=f"$d_1 = {d1:.2f}$ [próbki]",
             )
             plt.title("Histogram lokalizacji maksymalnych wartości")
-            plt.xlabel("Opóźnienie echa [próbek]")
+            plt.xlabel("Opóźnienie echa [próbki]")
             plt.yscale("log")
             plt.legend()
             plt.tight_layout()
@@ -117,10 +117,10 @@ class EchoDetector:
             avg_sums.append(avg_sum)
 
         if save_plot:
-            plt.figure(figsize=(8, 4))
+            plt.figure(figsize=(6, 4))
             plt.plot(lengths, avg_sums, ".-")
             plt.title("Estymacja długości segmentu")
-            plt.xlabel("Długość segmentu [próbek]")
+            plt.xlabel("Długość segmentu [próbki]")
             plt.ylabel("Średnia suma wartości mocy cepstrum w $d_0$ i $d_1$")
             plt.tight_layout()
             plt.grid(True)
