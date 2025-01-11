@@ -2,11 +2,10 @@
 \usepackage[margin=1in]{geometry} % Optional: adjust page margins
 
 \usepackage[utf8]{inputenc}
-\usepackage[utf8]{inputenc}
 \usepackage[MeX]{polski}
 \usepackage{graphicx}   %do rysunków
 \usepackage{wrapfig}    %do rysunków otoczonych tekstem
-\usepackage{color}      %do użycia podst. kolorów oraz zdefiniowanych kolorów 
+\usepackage{color}      %do użycia podst. kolorów oraz zdefiniowanych kolorów
 %do kolorowych referencji do rysunków, cytowań:
 \usepackage{multirow}
 \usepackage{longtable}
@@ -21,6 +20,9 @@
 \usepackage{subcaption}
 \usepackage{csquotes}
 \usepackage{listings}
+\usepackage{xcolor}
+\usepackage[charter]{mathdesign}
+\usepackage{inconsolata}
 
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 
@@ -28,6 +30,16 @@
 \usepackage{multicol}
 \usepackage{colortbl}
 
+\textwidth=16cm
+\textheight=23cm
+\topmargin=-2cm
+\oddsidemargin=0cm
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.6em}
+\setlength{\jot}{12pt}
+
+\renewcommand{\arraystretch}{1.4}
 
 %do pdfow
 \usepackage{pdfpages}
@@ -43,22 +55,30 @@
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
-\lstdefinestyle{mystyle}{  
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{magenta},
-    numberstyle=\tiny\color{codegray},
-    stringstyle=\color{codepurple},
+\lstdefinestyle{mystyle}{
+    aboveskip=1em, % Increase space above the listing
     basicstyle=\ttfamily\footnotesize,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=t,                    
-    keepspaces=true,                 
-    numbers=left,                    
-    numbersep=5pt,                  
-    showspaces=false,                
+    belowskip=1em, % Increase space below the listing
+    breakatwhitespace=true,
+    breaklines=true,
+    captionpos=b, % Caption at the bottom
+    columns=fixed,
+    commentstyle=\color{gray!80!black}\itshape, % Comments in italic gray
+    frame=single, % Add frame around the listing
+    keepspaces=true,
+    keywordstyle=\bfseries\color{blue}, % Keywords in bold blue
+    language=Python,
+    morekeywords={as, yield, Any, Generator, np}, % Additional keywords
+    numbers=left,
+    numbersep=5pt,
+    numberstyle=\tiny\color{gray}, % Small gray line numbers
+    rulecolor=\color{gray!50}, % Frame color
+    showspaces=false,
     showstringspaces=false,
-    showtabs=false,                  
-    tabsize=2
+    showtabs=false,
+    stepnumber=1,
+    stringstyle=\color{green!60!black}, % Strings in green
+    tabsize=4,
 }
 
 \lstset{style=mystyle}
@@ -66,39 +86,39 @@
 \begin{document}
 
 \begin{titlepage}
-    \begin{center}
-        \vspace*{1cm}
-        
-        \textbf{\Huge Politechnika Warszawska}\\
-        \vspace{2cm}
-        
-        \textbf{\LARGE Raport Projektu}\\
-        \vspace{0.5cm}
-        \textbf{\Large Metody wykrywania steganografii}\\
-        
-        \vspace{2cm}
-        
-        \textbf{Przedmiot:} Kryptografia Stosowana \\
-        \textbf{Kod przedmiotu:} 103A-TLTIC-MSP-KRYS \\
-        \textbf{Prowadzący:} dr Adam Komorowski \\
-        
-        \vfill
-        
-        \textbf{Autorzy:}\\
-        \vspace{0.5cm}
-        Safiya Aliaksandrava\\
-        Wiktor Ciołek 311501\\
-        Ignacy Czajkowski\\
-        Urszula Kamińska\\
-        Dawid Karpiński\\
-        
-        \vspace{1cm}
-        
-        \textbf{Data:} \\
-        \today
-        
-        \vspace{2cm}
-    \end{center}
+	\begin{center}
+		\vspace*{1cm}
+
+		\textbf{\Huge Politechnika Warszawska}\\
+		\vspace{2cm}
+
+		\textbf{\LARGE Dokumentacja Projektu}\\
+		\vspace{0.5cm}
+		\textbf{\Large Metody wykrywania steganografii}\\
+
+		\vspace{2cm}
+
+		\textbf{Przedmiot:} Kryptografia Stosowana \\
+		\textbf{Kod przedmiotu:} 103A-TLTIC-MSP-KRYS \\
+		\textbf{Prowadzący:} dr Adam Komorowski \\
+
+		\vfill
+
+		\textbf{Autorzy:}\\
+		\vspace{0.5cm}
+		Safiya Aliaksandrava\\
+		Wiktor Ciołek, 311501\\
+		Ignacy Czajkowski\\
+		Urszula Kamińska\\
+		Dawid Karpiński, 311383\\
+
+		\vspace{1cm}
+
+		\textbf{Data:} \\
+		\today
+
+		\vspace{2cm}
+	\end{center}
 \end{titlepage}
 
 \section{Wstęp}
@@ -106,9 +126,14 @@ Czym jest staganografia\\
 kto jest autorem czego\\
 Link do repozytorium z kodami
 
+\clearpage
 \section{Wykrywanie LSB Matching w obrazach za pomocą uczenia maszynowego}
-    \input{image-lsb-matching}
-        
+\input{image-lsb-matching}
+
+\clearpage
+\section{Wykrywanie Echo Hiding poprzez analizę cepstrum mocy sygnału}
+\input{echo-hiding-cepstral}
+
 \section{Podsumowanie}
 
 \printbibliography[title={Źródła}] %Prints bibliography
