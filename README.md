@@ -10,7 +10,7 @@ Projekt polega na opracowaniu teoretycznym i implementacji wybranych metod wykry
 uczenia maszynowego
 - Ignacy Czajkowski - ?
 - Urszula Kamińska - ?
-- Dawid Karpiński - Wykrywanie modyfikacji echa metodą autokorelacji
+- Dawid Karpiński - Wykrywanie Echo Hiding poprzez analizę cepstrum mocy sygnału
 
 
 ## Wymagania projektowe
