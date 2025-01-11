@@ -93,6 +93,7 @@
             \item \textbf{Przygotowanie danych i implementacja steganografii}\\
             Skorzystano ze zbioru \texttt{BOSSbase} zawierającego 10 tysięcy obrazów o wymiarach 256x256 pikseli każdy o wielkości bajta \cite{bossbase}. W każdym z obrazów ukryto dodatkowo wiadomość z parametrem $\mu = 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1$. Otrzymano w ten sposób dla każdego obrazu dodatkowo różne wersję każda z ukrytą wiadomością o innej długości. Wiadomością był losowy ciąg bitów. Ukrywany był on w losowo wybieranych pikselach
 
+
             \begin{lstlisting}[language=Python, caption={Funkcja ukrywająca wiadomość za pomocą \textit{LSB Matching}.}]
 import random
 import numpy as np
