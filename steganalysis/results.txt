@@ -1,0 +1,44 @@
+Chi-Square Test: Statistic=nan, p-value=nan
+Suma ró¿nic w LSB: 42342752
+Entropia obrazu Cover: 4.2941
+Entropia obrazu Stego: 4.2953
+Chi-Square Test: Statistic=nan, p-value=nan
+Suma ró¿nic w LSB: 46618108
+Entropia obrazu Cover: 4.2941
+Entropia obrazu Stego: 4.3323
+Suma ró¿nic w LSB: 42342752
+Entropia obrazu Cover: 4.2941
+Entropia obrazu Stego: 4.2953
+Suma ró¿nic w LSB: 42342752
+Entropia obrazu Cover: 4.2941
+Entropia obrazu Stego: 4.2953
+Suma ró¿nic w LSB: 42342752
+Entropia obrazu Cover: 4.2941
+Entropia obrazu Stego: 4.2953
+Suma ró¿nic w LSB: 42342752
+Entropia obrazu Cover: 4.2941
+Entropia obrazu Stego: 4.2953
+Suma ró¿nic w LSB: 42342752
+Entropia obrazu Cover: 4.2941
+Entropia obrazu Stego: 4.2953
+Suma ró¿nic w LSB: 42342752
+Entropia obrazu Cover: 4.2941
+Entropia obrazu Stego: 4.2953
+Suma ró¿nic w LSB: 42342752
+Entropia obrazu Cover: 4.2941
+Entropia obrazu Stego: 4.2953
+Suma ró¿nic w LSB: 42342752
+Entropia obrazu Cover: 4.2941
+Entropia obrazu Stego: 4.2953
+Suma ró¿nic w LSB: 42342752
+Entropia obrazu Cover: 4.2941
+Entropia obrazu Stego: 4.2953
+Suma ró¿nic w LSB: 42342752
+Entropia obrazu Cover: 4.2941
+Entropia obrazu Stego: 4.2953
+Suma ró¿nic w LSB: 42342752
+Entropia obrazu Cover: 4.2941
+Entropia obrazu Stego: 4.2953
+Suma ró¿nic w LSB: 42342752
+Entropia obrazu Cover: 4.2941
+Entropia obrazu Stego: 4.2953
