@@ -8,7 +8,7 @@ Projekt polega na opracowaniu teoretycznym i implementacji wybranych metod wykry
 - Safiya Aliaksandrava - ?
 - Wiktor Ciołek - Wykrywanie LSB Matching w obrazach za pomocą
 uczenia maszynowego
-- Ignacy Czajkowski - ?
+- Ignacy Czajkowski - Wykrywanie LSB poprzez analizę wzorców we współczynnikach DCT obrazków
 - Urszula Kamińska - ?
 - Dawid Karpiński - Wykrywanie Echo Hiding poprzez analizę cepstrum mocy sygnału
 
