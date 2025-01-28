@@ -9,7 +9,7 @@ Projekt polega na opracowaniu teoretycznym i implementacji wybranych metod wykry
 - Wiktor Ciołek - Wykrywanie LSB Matching w obrazach za pomocą
 uczenia maszynowego
 - Ignacy Czajkowski - Wykrywanie LSB poprzez analizę wzorców we współczynnikach DCT obrazków
-- Urszula Kamińska - ?
+- Urszula Kamińska - Wykrywanie steganografii w obrazach z wykorzystaniem analizy statystycznej
 - Dawid Karpiński - Wykrywanie Echo Hiding poprzez analizę cepstrum mocy sygnału
 
 
