@@ -1,1 +1,28 @@
+\section{Technika zastępowania najmniej znaczącego bitu}
+LSB replacement technique (pol., \textit{Technika zastępowania najmniej znaczącego bitu} lub \textit{technika zamiany najmniej znaczącego bitu}) jest metodą steganograficzną polegającą na modyfikacji najmniej znaczących bitów pikseli obrazu w celu ukrycia informacji. Technika ta opiera się na algorytmie, który jest wystarczająco szybki, prosty i efektywny.
 
+\subsection{Algorytm}
+\begin{itemize}
+    \item Przekształcamy wybrany obrazek (w którym chcemy ukryć wiadomość) do postaci binarnej, czyli ciągu zer (0) i jedynek(1);
+    \item dla każdego piksela obrazu przechodzimy przez każdy kanał kolorów RGB,
+    \item modyfikujemy najmniej znaczący bit danego kanału w pikselu tak, aby pasował do bitu wiadomości, która chcemy ukryć;
+    \item w sposób, opisany powyżej, ukrywamy dane;
+    \item odpowiednio w odwrócony sposób odszyfrujemy zakodowana wcześniej wiadomość.
+\end{itemize}
+
+\subsection{Wyjaśnienie implementacji oraz statystycznych testów weryfikacyjnych}
+
+\subsubsection{Implementacja algorytmu LSB (szyfrowanie wraz z deszyfrowaniem)}
+
+Implementację algorytm zaczęto od napisanie funkcji, wykonującej zaszyfrowanie tekstu w wybranym obrazie. Wiadomość tekstu została przekształcona na 8-bitowy ciąg binarny. Następnie, przechodząc przez każdy piksel odpowiedniego koloru w odcienie RGB, zmieniono najmniej znaczący jego bit na odpowiedni bit ukrywanej wiadomości.
+Następnym krokiem w odwrotnej kolejności zaimplementowano funkcje deszyfrującą. Jako wyniki deszyfrowania otrzymujemy równie tą wiadomość, którą została zaszyfrowana.
+
+\subsubsection{Weryfikacja zaimplementowanej metody testami $\chi^{2}$ i autokorelacji}
+
+Pierwszy test statystyczny, który przeprowadzono to standardowy test $\chi^{2}$, który ocenia zmienność histogramu obrazu przed ukryciem w nim wiadomości i odpowiednio po ukryciu.
+\noindent
+\newline
+\newline
+Test $\chi^{2}$ nie wykazał znacznych różnic w przypadku wejściowego i wyjściowego obrazu, co jest charakterne dla zastosowanej metody LSB z tego powodu, że zmienia ona tylko najmniej znaczące bity, co powoduje szczególnie bardzo małe zmiany w obrazie, a z kolei metoda $\chi^{2}$ jest czuła na duże zmiany.
+
+Drugi test, który przeprowadzono to test autokorelacji, który wykrywa, jak zmienia się położenie pikseli w obrazu po zakodowaniu wiadomości.  Ten test policzył korelację równą 0,9932. Co wciąż oznacza duże podobieństwo pomiędzy obrazem wejściowym a wyjściowym, jednak już wykrywa powstałe zmiany.
