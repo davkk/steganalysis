@@ -1,10 +1,10 @@
 \subsection{Steganaliza statystyczna}
 
-Proces ukrywania informacji w nośnikach cyfrowych zmienia ich właściwości statystyczne \cite{stat_stego_study}. Nośniki takie jak 
-obrazy, dźwięki czy wideo mają przewidywalne wzorce, które są zakłócane przez steganografię. Dzięki temu 
+Proces ukrywania informacji w nośnikach cyfrowych zmienia ich właściwości statystyczne \cite{stat_stego_study}. Nośniki takie jak
+obrazy, dźwięki czy wideo mają przewidywalne wzorce, które są zakłócane przez steganografię. Dzięki temu
 stosując odpowiednie metody analizy statystycznej, można wykryć obecność ukrytych danych.
 
-Najpopularniejszym nośnikiem steganograficznym wymienianym w literaturze są obrazy cyfrowe. Poniżej wymieniono 
+Najpopularniejszym nośnikiem steganograficznym wymienianym w literaturze są obrazy cyfrowe. Poniżej wymieniono
 często stosowane techniki steganalizy statystycznej w kontekście obrazów cyfrowych \cite{Michaylov23012024}.
 \begin{itemize}
     \item \textbf{Test chi-kwadrat}: Porównuje rozkład obserwowany z oczekiwanym, np. dla steganografii PVD \cite{chisquare}.
@@ -15,23 +15,23 @@ często stosowane techniki steganalizy statystycznej w kontekście obrazów cyfr
 
 \subsection{Analiza histogramów}
 
-Steganaliza oparta na histogramach jest statystyczną metodą wykrywania ukrytych wiadomości w obrazach, 
-które zostały zmodyfikowane za pomocą technik takich jak steganografia w najmniej znaczących bitach (LSB). 
+Steganaliza oparta na histogramach jest statystyczną metodą wykrywania ukrytych wiadomości w obrazach,
+które zostały zmodyfikowane za pomocą technik takich jak steganografia w najmniej znaczących bitach (LSB).
 Poniżej znajduje się opis implementacji metody z artykułu A Novel Steganalysis Method Based
 on Histogram Analysis \cite{histogram_steg}.
 
 \subsubsection{Algorytm}
 
-Metoda opiera się na porównaniu histogramów obrazu wyjściowego (cover image) oraz podejrzanego obrazu 
-(suspicious image). Specyficzny wzór różnic histogramów pomaga wykrywać obrazy stego (obrazy zawierające 
-ukryte dane). Metodę zaprojektowano tak, aby była uniwersalna, czyli niezależna od zastosowanego algorytmu 
+Metoda opiera się na porównaniu histogramów obrazu wyjściowego (cover image) oraz podejrzanego obrazu
+(suspicious image). Specyficzny wzór różnic histogramów pomaga wykrywać obrazy stego (obrazy zawierające
+ukryte dane). Metodę zaprojektowano tak, aby była uniwersalna, czyli niezależna od zastosowanego algorytmu
 steganograficznego.
 
 Algorytm składa się z następujących kroków:
 \begin{enumerate}
     \item Odczytanie podejrzanego i wyjściowego obrazu oraz zapisanie ich wartości intensywności pikseli.
     \item Obliczenie histogramów obu obrazów.
-    \item Analiza różnic histogramów: Szukanie wartości sąsiednich, które mają tę samą wielkość, ale różne 
+    \item Analiza różnic histogramów: Szukanie wartości sąsiednich, które mają tę samą wielkość, ale różne
     znaki.
     \item Zliczenie takich par i porównanie wyniku z ustalonym progiem.
     \item Na podstawie wyniku określenie, czy obraz podejrzany to obraz stego, czy normalny obraz.
@@ -45,7 +45,7 @@ Algorytm składa się z następujących kroków:
 \end{figure}
 
 \subsubsection{Implementacja}
-Poniżej przedstawiono fragment programu z kodem zaimplementowanego algorytmu. Pełny kod dostępny jest w 
+Poniżej przedstawiono fragment programu z kodem zaimplementowanego algorytmu. Pełny kod dostępny jest w
 repozytorium.
 
 \begin{lstlisting}[language=Python, caption=Steganaliza oparta na histogramach w Pythonie]
@@ -88,48 +88,53 @@ def detect_stego_image(cover_image, suspicious_image, threshold):
         return False  # Normal Image
 \end{lstlisting}
 
-Analizę wykonano dla próbek 20 obrazów stego i 20 obrazów cover pobranych z bazy BOSSBase. W celu sprawdzenia 
-wrażliwości algorytmu na modyfikacje obrazów nie będące działaniami steganograficznymi, pliki cover poddano 
+Analizę wykonano dla próbek 20 obrazów stego i 20 obrazów cover pobranych z bazy BOSSBase. W celu sprawdzenia
+wrażliwości algorytmu na modyfikacje obrazów nie będące działaniami steganograficznymi, pliki cover poddano
 kompresji oraz wprowadzono losowy szum--w ten sposób otrzymano 20 próbek "compress".
 
-Program sprawdził pary obrazów cover--stego oraz cover--compres i zwrócił wynik detekcji dla różnych 
+Program sprawdził pary obrazów cover--stego oraz cover--compres i zwrócił wynik detekcji dla różnych
 wartości progu detekcji.
 
 \subsubsection{Wyniki}
 
 Obrazy histogramów dla jednej z 20 par przedstawiono poniżej.
-\begin{figure}[h!]
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth]{./img/compress_histogram.png}
     \caption{Porównanie histogramów obrazu cover i compress.}
     \label{fig:histogram_comparison}
 \end{figure}
 
-\begin{figure}[h!]
+\pagebreak
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth]{./img/compress_diff_histogram.png}
     \caption{Histogram różnic między obrazami cover i compress.}
     \label{fig:histogram_diff}
 
-\end{figure}\begin{figure}[h!]
+\end{figure}
+
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth]{./img/cover_histogram.png}
     \caption{Porównanie histogramów obrazu cover i suspicious.}
     \label{fig:histogram_comparison}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth]{./img/diff_histogram.png}
     \caption{Histogram różnic między obrazami cover i suspicious.}
     \label{fig:histogram_diff}
 \end{figure}
 
-\begin{table}[H]
+\pagebreak
+
+\begin{table}[ht!]
     \centering
-    \begin{tabular}{@{}lccc@{}}
+    \begin{tabular}{|p{3cm}|p{5cm}|p{5cm}|}
     \toprule
-    \textbf{Próg detekcji} & \textbf{Poprawnie zidentyfikowane obrazy compress} & \textbf{Poprawnie zidentyfikowane obrazy stego} \\ \midrule
+        \textbf{Próg detekcji} & \textbf{Poprawnie zidentyfikowane obrazy compress} & \textbf{Poprawnie zidentyfikowane obrazy stego} \\ \midrule
     5 & 19 / 20 & 18 / 20 \\
     6 & 19 / 20 & 16 / 20 \\
     4 & 18 / 20 & 19 / 20 \\ \bottomrule
@@ -138,21 +143,23 @@ Obrazy histogramów dla jednej z 20 par przedstawiono poniżej.
     \label{tab:classification_results}
     \end{table}
 
-\subsubsection{Dyskusja i wnioski} 
-Wyniki wyglądają bardzo dobrze. Program poprawnie zidentyfikował większość próbel. Sam algorytm był łatwy w 
-implementacji oraz intuicyjny. Jest równiez prosty i nie wymaga zaawansowanych obliczeń, dlatego analiza trwa 
+\pagebreak
+
+\subsubsection{Dyskusja i wnioski}
+Wyniki wyglądają bardzo dobrze. Program poprawnie zidentyfikował większość próbek. Sam algorytm był łatwy w
+implementacji oraz intuicyjny. Jest również prosty i nie wymaga zaawansowanych obliczeń, dlatego analiza trwa
 krótko.
-Dobrze też wypada wrażliwość na szum--mimo wprowadzenia zmian do obrazów, które nie były ukrytymi 
-wiadomościami, algorytm poprawnie zidentyfikował je jako obrazyy nie-stego.
+Dobrze też wypada wrażliwość na szum--mimo wprowadzenia zmian do obrazów, które nie były ukrytymi
+wiadomościami, algorytm poprawnie zidentyfikował je jako obrazy nie-stego.
 
-Nie znany jest rodzaj steganografii, który został zastosowany do obrazów, więc nie można jednoznacznie określić 
-uniwersalności metody. 
+Nie znany jest rodzaj steganografii, który został zastosowany do obrazów, więc nie można jednoznacznie określić
+uniwersalności metody.
 
-Minusem algorytmu jest to, że opiera się na porównaniu podejrzanego obrazu z oryginałem. W praktyce utrudnieniem 
-może być konieczność posiadania obrazu wzorcowego. Skutecznośc zależy od ustawienia wartości progowej, co 
+Minusem algorytmu jest to, że opiera się na porównaniu podejrzanego obrazu z oryginałem. W praktyce utrudnieniem
+może być konieczność posiadania obrazu wzorcowego. Skuteczność zależy od ustawienia wartości progowej, co
 również może być problematyczne.
 
 \subsubsection{Podsumowanie}
-Algorytm zaproponowany przez autorów artykułu okazał się skuteczny w wykrywaniu obrazów stego. Istnieje też 
-szansa rozwoju go na analizę steganografii nie tylko przestrzennej, ale też czasowej, co pozwoliłoby na rozszerzenie 
+Algorytm zaproponowany przez autorów artykułu okazał się skuteczny w wykrywaniu obrazów stego. Istnieje też
+szansa rozwoju go na analizę steganografii nie tylko przestrzennej, ale też czasowej, co pozwoliłoby na rozszerzenie
 analiz na inne nośniki cyfrowe, takie jak dźwięk czy wideo.

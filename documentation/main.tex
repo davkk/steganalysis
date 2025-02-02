@@ -1,9 +1,8 @@
 \documentclass[a4paper,12pt]{article}
-\usepackage[margin=1in]{geometry} % Optional: adjust page margins
+\usepackage[margin=1in,includeheadfoot]{geometry}
 
 \usepackage[utf8]{inputenc}
 \usepackage[MeX]{polski}
-\usepackage{graphicx}   %do rysunków
 \usepackage{wrapfig}    %do rysunków otoczonych tekstem
 \usepackage{color}      %do użycia podst. kolorów oraz zdefiniowanych kolorów
 %do kolorowych referencji do rysunków, cytowań:
@@ -24,6 +23,8 @@
 \usepackage{xcolor}
 \usepackage[charter]{mathdesign}
 \usepackage{inconsolata}
+\usepackage{graphicx}
+\usepackage{booktabs}
 
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 
@@ -107,11 +108,11 @@
 
 		\textbf{Autorzy:}\\
 		\vspace{0.5cm}
-		Safiya Aliaksandrava, 317068\\
-		Wiktor Ciołek, 311501\\
+		Safiya Aliaksandrava\\
+		Wiktor Ciołek\\
 		Ignacy Czajkowski\\
-		Urszula Kamińska, 311381\\
-		Dawid Karpiński, 311383\\
+		Urszula Kamińska\\
+		Dawid Karpiński\\
 
 		\vspace{1cm}
 
@@ -121,6 +122,9 @@
 		\vspace{2cm}
 	\end{center}
 \end{titlepage}
+
+\tableofcontents
+\clearpage
 
 \section{Wstęp}
 \input{wstep.tex}
@@ -143,12 +147,11 @@
 \input{dct_pattern_matching}
 
 \clearpage
-\section{Implemetacja metody LSB Replasing w obrazach oraz weryfikacja za pomocą standardowych i niestandardowych testów}
+\section{Implementacja metody LSB Replacing w obrazach oraz weryfikacja za pomocą standardowych i niestandardowych testów}
 \input{lsb_replacement_method}
 
-\section{Podsumowanie}
-
-\printbibliography[title={Źródła}] %Prints bibliography
+\clearpage
+\printbibliography[title={Źródła}]
 
 \end{document}
 

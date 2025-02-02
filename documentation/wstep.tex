@@ -1,36 +1,36 @@
 \subsection{Steganografia i steganoanaliza}
-\textbf{Steganografia} to sztuka ukrywania informacji. Jej celem jest przekazanie wiadomości w taki sposób, żeby 
-pozostała niezauważona przez osoby postronne. Tym różni się od kryptografii - ta zabezpiecza informacje 
-przed odczytaniem, natomiast sam komunikat może zostać zauważony, dopóki nie zostanie odkodowany. W 
+\textbf{Steganografia} to sztuka ukrywania informacji. Jej celem jest przekazanie wiadomości w taki sposób, żeby
+pozostała niezauważona przez osoby postronne. Tym różni się od kryptografii - ta zabezpiecza informacje
+przed odczytaniem, natomiast sam komunikat może zostać zauważony, dopóki nie zostanie odkodowany. W
 steganografii sam fakt przekazywania informacji powinien zostać niezauważony przed podsłuchujących.
-Sama technika steganografii powstała w starożytności, ale rozwój technologii znacząco wpłynął na rozwój tej 
+Sama technika steganografii powstała w starożytności, ale rozwój technologii znacząco wpłynął na rozwój tej
 dziedziny, dostarczając nowych metod ukrywania informacji. \cite{Johnson, khalid}
 
-Nośnik, w którym zostanie ukryta informacja, może być właściwie dowolny i nazywany jest kontenerem. 
-Najpopularniejszymi nośnikami w steganografii są dane multimedialne: obraz, pliki audio i wideo. Równie 
-często wykorzystuje się protokoły IP i VoIP. Zdarzają się również techniki steganograficzne w tekstach, 
+Nośnik, w którym zostanie ukryta informacja, może być właściwie dowolny i nazywany jest kontenerem.
+Najpopularniejszymi nośnikami w steganografii są dane multimedialne: obraz, pliki audio i wideo. Równie
+często wykorzystuje się protokoły IP i VoIP. Zdarzają się również techniki steganograficzne w tekstach,
 jednak są rzadziej stosowane z powodu różnego rodzaju ograniczeń.\\
-Można ogólnie powiedzieć, że każdy nośnik danych jest potencjalnym kontenerem dla steganografii. 
-Istnieją opisy wykorzystywania do tego plików wykonywalnych *.exe, wiadomości MMS, protokołów UDP czy nawet 
+Można ogólnie powiedzieć, że każdy nośnik danych jest potencjalnym kontenerem dla steganografii.
+Istnieją opisy wykorzystywania do tego plików wykonywalnych *.exe, wiadomości MMS, protokołów UDP czy nawet
 łańcuchów DNA. \cite{Kozie2014WspczesneTS}
 
 
-Odpowiedzią na steganografię jest \textbf{steganoanaliza}, zajmująca się wykrywaniem ukrytych wiadomości. 
-Steganaliza ma na celu identyfikację obecności ukrytych danych, a czasem nawet ekstrakcję tych danych, bez 
-wiedzy o kluczu lub algorytmie użytym do osadzenia wiadomości. 
-Steganalizę można podzielić na dwie główne kategorie: steganalizę specyficzną (target) oraz steganalizę 
-uniwersalną (blind). Do pierwszej grupy należeć będą metody ukierunkowane na konkretne algorytmy 
-steganograficzne. Druga grupa zbiera rozwiązania bardziej elastyczne, ale przez to najczęściej mniej dokładne. 
+Odpowiedzią na steganografię jest \textbf{steganaliza}, zajmująca się wykrywaniem ukrytych wiadomości.
+Steganaliza ma na celu identyfikację obecności ukrytych danych, a czasem nawet ekstrakcję tych danych, bez
+wiedzy o kluczu lub algorytmie użytym do osadzenia wiadomości.
+Steganalizę można podzielić na dwie główne kategorie: steganalizę specyficzną (target) oraz steganalizę
+uniwersalną (blind). Do pierwszej grupy należeć będą metody ukierunkowane na konkretne algorytmy
+steganograficzne. Druga grupa zbiera rozwiązania bardziej elastyczne, ale przez to najczęściej mniej dokładne.
 
-Wraz z rozwojem nowych technik steganograficznych, stale potrzebne są nowe i bardziej zaawansowane metody 
-steganalizy -- steganaliza jest nieustannie rozwijającą się dziedziną, która odgrywa kluczową rolę w 
+Wraz z rozwojem nowych technik steganograficznych, stale potrzebne są nowe i bardziej zaawansowane metody
+steganalizy -- steganaliza jest nieustannie rozwijającą się dziedziną, która odgrywa kluczową rolę w
 zapewnianiu bezpieczeństwa informacji i walce z cyberprzestępczością. \cite{stat_stego_study}
 
 
 \subsection{Informacje nt. realizacji projektu}
-Projekt polegał na opracowaniu teoretycznym i implementacji wybranych metod wykrywania ukrytych informacji 
+Projekt polegał na opracowaniu teoretycznym i implementacji wybranych metod wykrywania ukrytych informacji
 w obrazach, plikach audio lub innych mediach.
-W dalszej części dokumentacji zostały przedstawione wybrane techniki steganoanalizy wraz z opisem 
-implementacji. Każdy członek zespołu opracował jedną metodę. Pełny kod źródłowy projektu znajduje się w 
-repozytorium na platformie GitHub \cite{repo}.
+W dalszej części dokumentacji zostały przedstawione wybrane techniki steganoanalizy wraz z opisem
+implementacji. Każdy członek zespołu opracował jedną metodę. Pełny kod źródłowy projektu znajduje się w
+repozytorium na platformie GitHub \url{https://github.com/davkk/steganalysis}.
 
